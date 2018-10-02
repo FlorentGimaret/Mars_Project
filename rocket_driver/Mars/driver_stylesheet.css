@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
+body {
+text-align: center;
+    color:whitesmoke;
+/*background: linear-gradient(to left,#555555 10%, darkgray 80% );*/
+    background-image: url('wp-pilot.jpg');
+    background-size: cover;
+    /*background-color: white;*/
+}
+
+
+
+a {
+    color:black;
+
+    font-family: "Righteous",Arial, sans-serif;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+/*
+    border-right:7px solid black;
+    border-bottom:7px solid black;
+    border-top: 3px solid darkgray;
+    border-left: 1px solid darkgray;*/
+    border: 5px outset #222222;
+    border-radius: 5px;
+
+}
+
+a:hover {
+    background-color: lightgray;
+    border: 5px inset #222222;
+    /*border: none;*/
+    /*box-shadow: 1px 1px 10px grey inset;*/
+
+}
+
+#input-turn {
+    margin-right: 20px;
+
+}
+
+
+small {
+    font-size:9px;
+}
+
+.key-img {
+    height: 50px;
+    display: inline;
+    vertical-align: bottom;
+}
+
+#commands {
+    line-height: 60px;
+    border: 1px solid black;
+    padding: 3%;
+    background-image: url('wp-pilot.jpg') ;
+}
+
+header {
+    font-size: xx-large;
+    text-transform: uppercase;
+    font-family: "Righteous",Arial, sans-serif;
+}
+
+#georgette {
+    width: 100px;
+    transition: transform 3s;
+}
+
+@keyframes move {
+    from { transform: translateX(0px);}
+    25% {transform: translateX(500px);}
+    75% {transform: translateX(-500px);}
+    /*50% { transform: scaleX(-1);}*/
+    to { transform: translateX(0px);}
+}
+
+@keyframes moveR {
+    from { transform: rotate(0);}
+    to { transform: rotate(360deg);}
+}
+@keyframes moveL {
+    from { transform: rotate(0);}
+    to { transform: rotate(-360deg);}
+}
+
+/*
+
+#georgette:hover {
+    transform: translateX(5000px);
+    transition: 5s;
+}*/
