@@ -3,15 +3,67 @@
 	<head>
 		<title>Mars Project</title>
 		<style type="text/css" media="screen">
+
 			input[type="range"]{
 				width: 100%;
+			}
+
+			div.modeCol {
+				float:left;
+				width:33%;
+				text-align: center;
+			}
+
+			img.tankImg, img.slasherImg, img.healerImg {
+				max-height: 5rem;
+				height:100%;
+			}
+
+			button.modeBtn {
+				border: 2px solid black;
+			}
+
+			button.modeBtn.pressed {
+				border: 5px solid black;
+			}
+
+			button#tankBtn {
+				background-color: lightblue;
+			}
+
+			button#slasherBtn {
+				background-color: tomato;
+			}
+
+			button#healerBtn {
+				background-color: lightgreen;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="Energy" style="border :1px solid black; padding: 5px 5px 5px 5px;">
-			<h1>Energie du vaisseau</h1>
-			<button type="button" id="stabilizePower">Stabiliser</button>
+			<h1>Energie du vaisseau <button type="button" id="stabilizePower">Stabiliser</button></h1>
+			<div style="width: 100%;overflow:auto;">
+				<div class="modeCol">
+					<button id="tankBtn" type="button" class="modeBtn pressed">
+						<img src="Resources/images/tank.png" class="tankImg">
+						<div>TANK</div>
+					</button>
+				</div>
+				<div class="modeCol">
+					<button id="slasherBtn" type="button" class="modeBtn">
+						<img src="Resources/images/slasher.png" class="slasherImg">
+						<div>SLASHER</div>
+					</button>
+				</div>
+				<div class="modeCol">
+					<button  id="healerBtn" type="button" class="modeBtn">
+						<img src="Resources/images/healer.png" class="healerImg">
+						<div>HEALER</div>
+					</button>
+				</div>
+			</div>
+
 			<div>
 				<h3>Système - <span id="systemPowerInfo">34%</span></h3>
 				<input type="range" id="systemPower" data-component="min="0" max="100" value="34"/>
