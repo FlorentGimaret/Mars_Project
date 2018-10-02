@@ -5,12 +5,22 @@ const minRotationSpeed = 1;
 const maxRotationSpeed = 50;
 const initialRotation = 180;
 const initialspeedRotationValue = 10;
+const TEAM_NB = 2;
+const USERNAME = 'PaulZer';
+const USERJOB = 'Engineer';
+const ws = new WebSocket(`ws://92.222.88.16:9090?team=`+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
+ws.onopen = function(e){
+	console.log(e);
+}
+ws.onmessage = function(event){
+	var data = JSON.parse(event.data);
+	//console.log(data);
+}
 
 //Variables
 var rotationValue = initialRotation;
 var speedRotationValue = initialspeedRotationValue;
 var inputRotationSelected = false;
-var inputSpeedRotationSelected = false;
 var leftDirection = false;
 var rightDirection = false;
 var upSpeed = false;
@@ -19,8 +29,6 @@ var downSpeed = false;
 //DOM elements
 var rotationView;
 var rotationController;
-var speedRotationView;
-var speedRotationController;
 var arrowLeft;
 var arrowRight;
 
@@ -28,8 +36,6 @@ var arrowRight;
 function reloadView() {
 	rotationController.value = rotationValue;
 	rotationView.textContent = rotationValue;
-	speedRotationController.value = speedRotationValue;
-	speedRotationView.textContent = speedRotationValue;
 }
 
 function rotate(rotationKey = 1){
@@ -57,11 +63,18 @@ function updateValues(){
 		rotationValue = rotationController.value;
 		resetInputRange();
 		reloadView();
-	} else if(inputSpeedRotationSelected){
-		speedRotationValue = speedRotationController.value;
-		reloadView();
 	}
 }
+
+function sendToServer(id, value){
+
+	var component = id.replace('Power', '');
+	//console.log('COMMAND => spaceship:'+component+':power');
+	//console.log('COMMAND DATA : power =>', value);
+
+	ws.send(JSON.stringify({ power: 'spaceship:'+component+':power', data: { power: value }}));
+}
+
 	
 //main
 window.onload = function(){
@@ -87,15 +100,6 @@ window.onload = function(){
 	rotationController.addEventListener('mouseup', function(){
 		inputRotationSelected = false;
 	});	
-	
-	////Range input changement
-	speedRotationController.addEventListener('mousedown', function(){
-		inputSpeedRotationSelected = true;
-	});
-	
-	speedRotationController.addEventListener('mouseup', function(){
-		inputSpeedRotationSelected = false;
-	});
 	
 	//Main event : mousemove
 	document.addEventListener('mousemove', function(){
@@ -123,20 +127,18 @@ window.onload = function(){
 		else if(event.keyCode == 39){
 			rightDirection = true;
 		}
-		console.log('leftDirection : ', leftDirection, '/ rightDirection : ', rightDirection);
+		//console.log('leftDirection : ', leftDirection, '/ rightDirection : ', rightDirection);
 	});
 	////Keyup
 	document.addEventListener('keyup', function(event){
 		console.log(event);
 		if(event.keyCode == 37){	//left
 			leftDirection = false;
-		} else if(event.keyCode == 38){	//top
 		}
 		else if(event.keyCode == 39){	//right
 			rightDirection = false;
-		} else if(event.keyCode == 40){	//bottom
 		}
-		console.log('leftDirection : ', leftDirection, '/ rightDirection : ', rightDirection);
+		//console.log('leftDirection : ', leftDirection, '/ rightDirection : ', rightDirection);
 	});
 	////Keypress
 	document.addEventListener('keypress', function(event){
