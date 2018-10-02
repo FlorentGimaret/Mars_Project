@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mars Project</title>
+		<style type="text/css" media="screen">
+			input[type="range"]{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="Energy" style="border :1px solid black; padding: 5px 5px 5px 5px;">
+			<h1>Energie du vaisseau</h1>
+			<button type="button" id="stabilizePower">Stabiliser</button>
+			<div>
+				<h3>Système - <span id="systemPowerInfo">34%</span></h3>
+				<input type="range" id="systemPower" data-component="min="0" max="100" value="34"/>
+			</div>
+			<div>
+				<h3>Propulsion - <span id="thrusterPowerInfo">33%</span></h3>
+				<input type="range" id="thrusterPower" min="0" max="100" value="33"/>
+			</div>
+			<div>
+				<h3>Protection - <span id="shieldPowerInfo">33%</span></h3>
+				<input type="range" id="shieldPower" min="0" max="100" value="33"/>
+			</div>
+		</div>
+		<script src="mars_project_engineer.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
