@@ -1,17 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-	var _mouseDown = 0;
-	document.body.on_mouseDown = function() { _mouseDown = 1; }
-	document.body.onmouseup = function() { _mouseDown = 0; }
-
-	var _userMode = document.querySelector('.modeBtn.pressed').getAttribute('id').replace('Btn', '');
-	console.log("_userMode", _userMode);
-
 	const TEAM_NB = 2;
 	const USERNAME = 'PaulZer';
 	const USERJOB = 'Engineer';
+	const IP_SERVER = '92.222.88.16:9090';
+	const SERVER_PORT = '9090';
+	
+	const ws = new WebSocket('ws://'+IP_SERVER+':'+SERVER_PORT+'?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 
-	const ws = new WebSocket('ws://92.222.88.16:9090?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
+	var _mouseDown = 0;
+	var _userMode = document.querySelector('.modeBtn.pressed').getAttribute('id').replace('Btn', '');
+	console.log("_userMode", _userMode);
 
 	ws.onopen = function(e){
 		console.log(e);
@@ -24,17 +23,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	var send = function(id, value){
 		var component = id.replace('Power', '');
-		//console.log('COMMAND => spaceship:'+component+':power');
-		//console.log('COMMAND DATA : power =>', value);
+		console.log('COMMAND => spaceship:'+component+':power');
+		console.log('COMMAND DATA : power =>', value);
 
 		ws.send(JSON.stringify({ power: 'spaceship:'+component+':power', data: { power: value }}));
 	}
 
-	var changeListener = function(input){
+	var changeListener = function(event){
+		console.log(_mouseDown);
 		if(!_mouseDown) return;
-	  	send(this.id, this.value);
-	  	console.log(document.querySelector('#'+this.id+'Info'));
-	  	document.querySelector('#'+this.id+'Info').innerHTML = this.value+'%';
+
+		var input = event.srcElement;
+		console.log("input", input);
+
+	  	send(input.id, input.value);
+	  	console.log(document.querySelector('#'+input.id+'Info'));
+	  	document.querySelector('#'+input.id+'Info').innerHTML = this.value+'%';
 
 	  	var inputValues = [healthInput, shieldInput, thusterInput].map(x => parseInt(x.value));
 	  	console.log("inputValues", inputValues);
@@ -46,15 +50,15 @@ document.addEventListener("DOMContentLoaded", function() {
 	  	} else return;
 	};
 
-	var changeModeListener = function(button){
-		document.getElementsByClassName('modeBtn').forEach(function(el){
-			el.classList.remove('pressed');
-		});
-
+	var changeModeListener = function(event){
+		var modeBtns = document.getElementsByClassName('modeBtn');
+		for (var i =  0; i <= modeBtns.length - 1; i++) {
+			modeBtns[i].classList.remove('pressed');
+		}
+		var button = event.target.classList.contains('modeBtn') ? event.target : event.target.closest('.modeBtn');
 		button.classList.add('pressed');
 
 		_userMode = button.getAttribute('id').replace('Btn', '');
-		console.log("_userMode", _userMode);
 	};
 
   	var healthInput = document.querySelector('#systemPower');
@@ -63,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   	[healthInput, shieldInput, thusterInput].forEach(function(el){
   		el.addEventListener('mousemove', changeListener);
+  		el.onmousedown = function() { _mouseDown = 1; }
+		el.onmouseup = function() { _mouseDown = 0; }
   	});
 
   	var stabilizePowerBtn = document.querySelector('#stabilizePower');
@@ -71,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function() {
   			if(el === healthInput) var val = 34;
   			else var val = 33;
   			el.value = val;
-  			el.dispatchEvent(new Event('change'));
+  			_mouseDown = 1;
+  			el.dispatchEvent(new Event('mousemove'));
+  			_mouseDown = 0;
   		});
   	});
 
