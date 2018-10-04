@@ -8,9 +8,11 @@ const initialspeedRotationValue = 10;
 const TEAM_NB = 2;
 const USERNAME = 'PaulZer';
 const USERJOB = 'Engineer';
+
+//Web socket
 const ws = new WebSocket(`ws://92.222.88.16:9090?team=`+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 ws.onopen = function(e){
-	console.log(e);
+	//console.log(e);
 }
 ws.onmessage = function(event){
 	var data = JSON.parse(event.data);
@@ -49,7 +51,7 @@ function rotate(rotationKey = 1){
 }
 
 function resetInputRange(){
-	console.log('rotationValue : ', rotationValue);
+	// console.log('rotationValue : ', rotationValue);
 	if(rotationValue <= minRotation){
 		rotationValue = maxRotation - rotationValue;
 	} else if(rotationValue >= maxRotation){
@@ -131,7 +133,7 @@ window.onload = function(){
 	});
 	////Keyup
 	document.addEventListener('keyup', function(event){
-		console.log(event);
+		//console.log(event);
 		if(event.keyCode == 37){	//left
 			leftDirection = false;
 		}
@@ -148,17 +150,17 @@ window.onload = function(){
 		else if(rightDirection){
 			rotate(1);
 		}
-		else if(upSpeed){
-			if(speedRotationValue < maxRotationSpeed){
-				++speedRotationValue;
-				reloadView();
-			}
-		} else if(downSpeed){
-			if(speedRotationValue > minRotationSpeed){
-				--speedRotationValue;
-				reloadView();
-			}
-		}
+		// else if(upSpeed){
+		// 	if(speedRotationValue < maxRotationSpeed){
+		// 		++speedRotationValue;
+		// 		reloadView();
+		// 	}
+		// } else if(downSpeed){
+		// 	if(speedRotationValue > minRotationSpeed){
+		// 		--speedRotationValue;
+		// 		reloadView();
+		// 	}
+		// }
 	});
 		
 };
