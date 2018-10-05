@@ -51,12 +51,12 @@ function rotate(rotationKey = 1){
 }
 
 function resetInputRange(){
-	console.log('rotationValue : ', rotationValue);
+	/*console.log('rotationValue : ', rotationValue);
 	if(rotationValue <= minRotation){
 		rotationValue = maxRotation - rotationValue;
 	} else if(rotationValue >= maxRotation){
 		rotationValue = minRotation + (maxRotation - rotationValue);
-	}
+	}*/
 	rotationController.value = rotationValue;
 }
 
@@ -150,7 +150,7 @@ window.onload = function(){
 		else if(rightDirection){
 			rotate(1);
 		}
-		else if(upSpeed){
+		/*else if(upSpeed){
 			if(speedRotationValue < maxRotationSpeed){
 				++speedRotationValue;
 				reloadView();
@@ -160,7 +160,7 @@ window.onload = function(){
 				--speedRotationValue;
 				reloadView();
 			}
-		}
+		}*/
 	});
 		
 };

@@ -1,0 +1,30 @@
+.turret_shooter{
+	background-color: lightgrey;
+	
+	height: 200px;
+	width: 400px;
+
+	border-radius: 15px;
+	
+}
+
+#power_range{
+	
+}
+
+p{
+	margin-left: 10%;
+}
+
+#current_power{
+	margin-top: 0%;
+}
+
+#shoot_button{
+	position: relative;
+
+	height: 50px;
+	width: 100px; 
+	
+	margin-left: 60%
+}
