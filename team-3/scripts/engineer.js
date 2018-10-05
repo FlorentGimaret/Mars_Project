@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 	const ws = new WebSocket('ws://'+IP_SERVER+SERVER_PORT+'?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 
-	var _mouseDown = 0;
 	var _userMode = document.querySelector('.modeBtn.pressed').getAttribute('id').replace('Btn', '');
 	console.log("_userMode", _userMode);
 
