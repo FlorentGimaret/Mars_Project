@@ -1,7 +1,7 @@
 
 // SOCKETS //
 
-const TEAM_NB = 2;
+const TEAM_NB = 3;
 const USERNAME = 'Vinterdraken';
 const USERJOB = 'Gunner';
 
