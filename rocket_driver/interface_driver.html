@@ -11,19 +11,25 @@
 
 <header>Piloter</header>
 
+<div id="login">
+    <form id="conn">
+        <input type="text" size="25" id="uname"/>
+        <select id="uselect">
+            <option value="Pilote">Pilote</option>
+            <option value="Commandant">Commandant</option>
+            <option value="Artilleur">Artilleur</option>
+            <option value="Ingénieur">Ingénieur</option>
+        </select>
+        <a href="#" id="subbutton">GO! </a>
+    </form>
+</div>
 
 <div id="commands">
     <a href="#" id="forward" style="margin-top: 1050px;">Avancer</a> <img src="Mars/space-bar.png" class="key-img" /> <br>
     <a href="#" id="turn-left">Tourner gauche</a><img src="Mars/arrow-left.png" class="key-img" /><br>
     <a href="#" id="turn-right">Tourner droite</a><img src="Mars/arrow-right.png" class="key-img" /><br>
-    <form id="turn-to"> <input type="range" id="input-turn" min="0" max="360" step="5" list="quart" />
-        <datalist id="quart">
-            <option value="0" label="0°">
-            <option value="90" label="90°">
-            <option value="180" label="180°">
-            <option value="270" label="270°">
-            <option value="360" label="360°">
-        </datalist>
+    <form id="turn-to"> <input type="range" id="input-turn" min="0" max="360" step="5" />
+       <output id="ot"></output>
 
 
 

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Big Falcon Rocket</title>
+  <link rel="stylesheet/less" type="text/css" href="style.less" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+  <script>
+
+  function qrySelect(parent, element){
+    document.getElementById(parent).querySelector(element);
+  };
+
+  var tab = [];
+  const ws = new WebSocket('ws://92.222.88.16:9090?team=1&username=JS&job=Captain');
+
+  ws.onmessage = function(evt) { tab = JSON.parse(evt.data); console.log(tab) };
+
+  ws.onopen = function() {
+      document.getElementsByClassName("active")[0].setAttribute("data-percent" , tab.data["data"]);
+      document.getElementsByClassName("active")[1].setAttribute("data-percent" , tab["systemPower"]*100);
+      document.getElementsByClassName("active")[2].setAttribute("data-percent" , tab["shieldPower"]*100);
+      document.getElementsByClassName("active")[3].setAttribute("data-percent" , tab["thrusterPower"]*100);
+      var dataPercent = "100";
+      var width = "100%";
+      var progress = "100%";
+      if (tab["reloading"] == true) {
+        dataPercent = "0";
+        width = "0%";
+        progress = "0%";
+      }
+      document.getElementsByClassName("active")[4].setAttribute("data-percent" , dataPercent);
+      /*qrySelect("infosVaisseau","li:nth-of-type(1)").append(tab["angle"]);
+      qrySelect("infosVaisseau","li:nth-of-type(2)").append(tab["turnDirection"]);
+      qrySelect("infosVaisseau","li:nth-of-type(3)").append(tab["turnTo"]);
+      qrySelect("infosVaisseau","li:nth-of-type(4)").append(tab["x"]);
+      qrySelect("infosVaisseau","li:nth-of-type(5)").append(tab["y"]);
+      qrySelect("infosVaisseau","li:nth-of-type(6)").append(tab["broken"]);
+      qrySelect("infosVaisseau","li:nth-of-type(7)").append(tab["inSafeZone"]);
+      qrySelect("infosVaisseau","li:nth-of-type(8)").append(tab["cargo"]);
+
+     qrySelect("infosTourelle","li:nth-of-type(1)").append(tab["turretAngle"]);
+     qrySelect("infosTourelle","li:nth-of-type(2)").append(tab["turretTurnDirection"]);
+     qrySelect("infosTourelle","li:nth-of-type(3)").append(tab["turretTurnTo"]);*/
+   };
+
+  </script>
+</head>
+
+<body>
+
+  <img id="spacex" src="spacex.jpg"/>
+
+  <!--<img id="gif" src="https://media.giphy.com/media/l0MYJAzu5RTVSGeiY/giphy.gif"/>-->
+
+  <img id="bfr" src="bfr.jpg"/>
+
+<div id="tabControle">
+
+  <section id="infosVaisseau">
+    <h1>Informations du vaisseau</h1>
+    <div class="ui indicating progress active" data-percent="100">
+      <div class="bar" style="width:100%;">
+        <div class="progress">100%</div>
+      </div>
+      <div class="label">HP</div>
+    </div>
+    <li>Angle : </li>
+    <li>Direction de rotation :</li>
+    <li>Rotation : </li>
+    <li>X : </li>
+    <li>Y : </li>
+    <li>État du vaisseau : </li>
+    <li>Zone sûre : </li>
+    <li>Cargaison : </li>
+  </section>
+
+  <section id="infosEnergie">
+    <h1>Informations énergie</h1>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie système</div>
+    </div>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie bouclier</div>
+    </div>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie poussée</div>
+    </div>
+  </section>
+
+  <section id="infosTourelle">
+    <h1>Informations tourelle</h1>
+    <div class="ui indicating progress active" data-percent="100">
+      <div class="bar" style="width:100%;">
+        <div class="progress">100%</div>
+      </div>
+      <div class="label">Rechargement effectué</div>
+    </div>
+    <li>Angle : </li>
+    <li>Direction de rotation : </li>
+    <li>Rotation : </li>
+  </section>
+
+</div>
+</body>
+</html>
