@@ -10,13 +10,13 @@ const USERNAME = 'Yaya';
 const USERJOB = 'Gunner';
 
 ////Websocket
-const ws = new WebSocket(`ws://92.222.88.16:9090?team=`+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
-ws.onopen = function(e){
-	console.log(e);
+const ws = new WebSocket(`ws://92.222.88.16:9090?team=` + TEAM_NB + '&username=' + USERNAME + '&job=' + USERJOB);
+ws.onopen = function(){
+	console.log('Server opened');
 }
 ws.onmessage = function(event){
 	var data = JSON.parse(event.data);
-	console.log(data);
+	console.log('Message server : ', data);
 }
 
 //Variables
@@ -43,9 +43,26 @@ function reloadView() {
 function rotate(rotationKey = 1){
 	if(rotationKey == -1){
 		rotationValue -= speedRotationValue;
+		message = {
+			name: 'spaceship:turret:rotate',
+			data: {
+				angle: 10,
+				direction: -1
+			}
+		};
 	} else if( rotationKey == 1){
-		rotationValue += speedRotationValue;	
+		rotationValue += speedRotationValue;
+		message = {
+			name: 'spaceship:turret:rotate',
+			data: {
+				angle: 5,
+				direction: 1
+			}
+		};
 	}
+	//console.log('COMMAND => spaceship:'+component+':power');
+	//console.log('COMMAND DATA : power =>', value);
+	sendToServer(ws, message);
 	resetInputRange();
 	reloadView();
 }
@@ -66,11 +83,9 @@ function rangeMoved(){
 	}
 }
 
-function sendToServer(id, value){
-	var component = id.replace('Power', '');
-	//console.log('COMMAND => spaceship:'+component+':power');
-	//console.log('COMMAND DATA : power =>', value);
-	//ws.send(JSON.stringify({ power: 'spaceship:'+component+':power', data: { power: value }}));
+function sendToServer(socket, message){
+	let stringigy = JSON.stringify(message);
+	socket.send(stringigy);
 }
 
 	
@@ -90,31 +105,6 @@ window.onload = function(){
 	reloadView();
 	
 	//Events	
-	////Range input changement
-	rotationController.addEventListener('mousedown', function(){
-		inputRotationSelected = true;
-	});
-	
-	rotationController.addEventListener('mouseup', function(){
-		inputRotationSelected = false;
-	});	
-	
-	//Main event : mousemove
-	document.addEventListener('mousemove', function(){
-		rangeMoved();
-	});
-	document.addEventListener('click', function(){
-		rangeMoved();
-	});
-	
-	////Arrows click
-	arrowLeft.addEventListener('click', function(){
-		rotate(-1)
-	});
-	
-	arrowRight.addEventListener('click', function(event){
-		rotate(1)
-	});
 	
 	//Arrow keyboard
 	////Keyup
