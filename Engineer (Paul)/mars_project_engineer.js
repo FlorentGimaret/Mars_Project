@@ -3,10 +3,10 @@ document.addEventListener("DOMContentLoaded", function() {
 	const TEAM_NB = 2;
 	const USERNAME = 'PaulZer';
 	const USERJOB = 'Engineer';
-	const IP_SERVER = '92.222.88.16:9090';
-	const SERVER_PORT = '9090';
+	const IP_SERVER = '92.222.88.16';
+	const SERVER_PORT = ':9090';
 	
-	const ws = new WebSocket('ws://'+IP_SERVER+':'+SERVER_PORT+'?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
+	const ws = new WebSocket('ws://'+IP_SERVER+SERVER_PORT+'?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 
 	var _mouseDown = 0;
 	var _userMode = document.querySelector('.modeBtn.pressed').getAttribute('id').replace('Btn', '');
