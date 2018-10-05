@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
   <script src="scripts/engineer.js" type="text/javascript" charset="utf-8"></script>
   <script src="scripts/captain.js" type="text/javascript" charset="utf-8"></script>
+    <script src="scripts/commands.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -77,6 +78,17 @@
 	
 	<section id="pilotSection">
 		<h1>Pilotage</h1>
+        <div id="commands">
+            <a href="#" id="turn-left"><img src="resources/key_q.png" class="key-img" /></a>
+            <a href="#" id="forward" ><img src="resources/key_z.png" class="key-img" /></a>
+            <a href="#" id="turn-right"><img src="resources/key_d.png" class="key-img" /></a><br>
+            <div id=txt>Z pour avancer, Q pour tourner à droite, D pour tourner à gauche</div>
+            <form id="turn-to"> <input type="range" id="input-turn" min="0" max="360" step="5" />
+                <output id="ot"></output>
+                <a id="turn-to-a" href="#"> Tourner à ... </a></form>
+            <img src="resources/rocket-unicorn.png" id="georgette"/>
+
+        </div>
 	</section>
 	<section id="engineerSection">
 		<h1>Energie</h1>
