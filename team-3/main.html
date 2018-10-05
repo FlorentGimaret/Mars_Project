@@ -95,44 +95,31 @@
         </div>
 	</section>
 	<section id="engineerSection">
-		<h1>Energie</h1>
-		<div id="Energy" style="padding: 5px 5px 5px 5px;">
-			<button type="button" id="stabilizePower">Stabiliser</button>
-			<div style="width: 100%;overflow:auto;">
-				<div class="modeCol">
-					<button id="tankBtn" type="button" class="modeBtn pressed">
-						<img src="resources/tank.png" class="tankImg">
-						<div>TANK</div>
-					</button>
-				</div>
-				<div class="modeCol">
-					<button id="slasherBtn" type="button" class="modeBtn">
-						<img src="resources/slasher.png" class="slasherImg">
-						<div>SLASH</div>
-					</button>
-				</div>
-				<div class="modeCol">
-					<button  id="healerBtn" type="button" class="modeBtn">
-						<img src="resources/healer.png" class="healerImg">
-						<div>HEAL</div>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class="label">Système - <span id="systemPowerInfo">34%</span></div>
-				<input type="range" id="systemPower" data-component="min="0" max="100" value="34"/>
+    <h1>Energie</h1>
+    <div id="Energy" style="padding: 5px 5px 5px 5px;">
+      <button class="modeBtn pressed" type="button" id="stabilizePower">Stabiliser</button>
+      <div style="width: 100%;overflow:auto;">
+        <div class="modeCol">
+          <button  id="healerBtn" type="button" role="system" class="modeBtn">
+            <img src="resources/healer.png" class="healerImg">
+            <div>HEAL</div>
+          </button>
+        </div>
+        <div class="modeCol">
+          <button id="tankBtn" type="button" role="shield" class="modeBtn">
+            <img src="resources/tank.png" class="tankImg">
+            <div>TANK</div>
+          </button>
+        </div>   
+        <div class="modeCol">
+          <button id="slasherBtn" type="button" role="thruster"  class="modeBtn">
+            <img src="resources/slasher.png" class="slasherImg">
+            <div>SLASH</div>
+          </button>
+        </div>
       </div>
-      <div>
-				<div class="label">Protection - <span id="shieldPowerInfo">33%</span></div>
-				<input type="range" id="shieldPower" min="0" max="100" value="33"/>
-			</div>
-			<div>
-				<div class="label">Propulsion - <span id="thrusterPowerInfo">33%</span></div>
-				<input type="range" id="thrusterPower" min="0" max="100" value="33"/>
-			</div>
-		</div>
-	</section>
+    </div>
+  </section>
 	<section id="gunnerSection">
     <h1>Tourelle</h1>
       <div class="rotation">
