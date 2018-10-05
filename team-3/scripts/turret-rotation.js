@@ -9,7 +9,7 @@ const USERNAME_GUNNER2 = 'Yaya';
 const USERJOB_GUNNER2 = 'Gunner';
 
 ////Websocket
-const ws = new WebSocket(`ws://92.222.88.16:9090?team=` + TEAM_NB + '&username=' + USERNAME_GUNNER2 + '&job=' + USERJOB_GUNNER2);
+
 ws.onopen = function(){
 	console.log('Server opened');
 }
@@ -36,7 +36,6 @@ var arrowRight;
 //Functions
 function reloadView() {
 	rotationController.value = rotationValue;
-	rotationView.textContent = rotationValue;
 }
 
 function rotate(rotationKey = 1){
