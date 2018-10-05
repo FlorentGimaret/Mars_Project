@@ -8,6 +8,8 @@ const initialspeedRotationValue = 10;
 const TEAM_NB = 2;
 const USERNAME = 'PaulZer';
 const USERJOB = 'Engineer';
+
+////Websocket
 const ws = new WebSocket(`ws://92.222.88.16:9090?team=`+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 ws.onopen = function(e){
 	console.log(e);
