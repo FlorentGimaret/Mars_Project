@@ -6,7 +6,7 @@ body
 {
   overflow-y: hidden;
   background-color:@couleur1 !important;
-  .tabControle,
+  .tabControle
   {
     width:100%;
     background-color: @couleur1;
@@ -115,6 +115,108 @@ body
       }
     }
   }
+
+  ////////////// Les Pilotes /////////////////
+  @import url('https://fonts.googleapis.com/css?family=Righteous');
+
+
+  #input-turn {
+    margin-right: 20px;
+
+  }
+
+  small {
+    font-size: 9px;
+  }
+
+  .key-img {
+    height: 50px;
+    display: inline;
+    vertical-align: bottom;
+  }
+
+  #commands {
+    line-height: 60px;
+    padding: 3%;
+
+  }
+
+  header {
+    font-size: xx-large;
+    text-transform: uppercase;
+    font-family: "Righteous", Arial, sans-serif;
+  }
+
+  #georgette {
+    width: 100px;
+    transition: transform 3s;
+  }
+
+  @keyframes move {
+    from {
+      transform: translateX(0px);
+    }
+    25% {
+      transform: translateX(50px);
+    }
+    75% {
+      transform: translateX(-50px);
+    }
+    /*50% { transform: scaleX(-1);}*/
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes moveR {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes moveL {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  #ot {
+    color:white!important;
+  }
+
+  #txt {
+    color:white;
+  }
+
+  #turn-to-a, #subbutton {
+    color:black;
+
+    font-family: "Righteous",Arial, sans-serif;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+    /*
+        border-right:7px solid black;
+        border-bottom:7px solid black;
+        border-top: 3px solid darkgray;
+        border-left: 1px solid darkgray;*/
+    border: 5px outset #222222;
+    border-radius: 5px;
+
+  }
+
+  #turn-to-a:hover,  #subbutton:hover {
+    background-color: lightgray;
+    border: 5px inset #222222;
+    /*border: none;*/
+    /*box-shadow: 1px 1px 10px grey inset;*/
+
+  }
+
 }
 
 
