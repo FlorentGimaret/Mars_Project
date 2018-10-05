@@ -13,6 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
   <script src="scripts/engineer.js" type="text/javascript" charset="utf-8"></script>
   <script src="scripts/captain.js" type="text/javascript" charset="utf-8"></script>
+    <script src="scripts/commands.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -77,46 +78,44 @@
 	
 	<section id="pilotSection">
 		<h1>Pilotage</h1>
+        <div id="commands">
+            <a href="#" id="turn-left"><img src="resources/key_q.png" class="key-img" /></a>
+            <a href="#" id="forward" ><img src="resources/key_z.png" class="key-img" /></a>
+            <a href="#" id="turn-right"><img src="resources/key_d.png" class="key-img" /></a><br>
+            <div id=txt>Z pour avancer, Q pour tourner à droite, D pour tourner à gauche</div>
+            <form id="turn-to"> <input type="range" id="input-turn" min="0" max="360" step="5" />
+                <output id="ot"></output>
+                <a id="turn-to-a" href="#"> Tourner à ... </a></form>
+            <img src="resources/rocket-unicorn.png" id="georgette"/>
+
+        </div>
 	</section>
 	<section id="engineerSection">
-		<h1>Energie</h1>
-		<div id="Energy" style="padding: 5px 5px 5px 5px;">
-			<button type="button" id="stabilizePower">Stabiliser</button>
-			<div style="width: 100%;overflow:auto;">
-				<div class="modeCol">
-					<button id="tankBtn" type="button" class="modeBtn pressed">
-						<img src="resources/tank.png" class="tankImg">
-						<div>TANK</div>
-					</button>
-				</div>
-				<div class="modeCol">
-					<button id="slasherBtn" type="button" class="modeBtn">
-						<img src="resources/slasher.png" class="slasherImg">
-						<div>SLASH</div>
-					</button>
-				</div>
-				<div class="modeCol">
-					<button  id="healerBtn" type="button" class="modeBtn">
-						<img src="resources/healer.png" class="healerImg">
-						<div>HEAL</div>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class="label">Système - <span id="systemPowerInfo">34%</span></div>
-				<input type="range" id="systemPower" data-component="min="0" max="100" value="34"/>
+    <h1>Energie</h1>
+    <div id="Energy" style="padding: 5px 5px 5px 5px;">
+      <button class="modeBtn pressed" type="button" id="stabilizePower">Stabiliser</button>
+      <div style="width: 100%;overflow:auto;">
+        <div class="modeCol">
+          <button id="tankBtn" type="button" role="shield" class="modeBtn">
+            <img src="resources/tank.png" class="tankImg">
+            <div>TANK</div>
+          </button>
+        </div>
+        <div class="modeCol">
+          <button  id="healerBtn" type="button" role="system" class="modeBtn">
+            <img src="resources/healer.png" class="healerImg">
+            <div>HEAL</div>
+          </button>
+        </div>
+        <div class="modeCol">
+          <button id="slasherBtn" type="button" role="thruster"  class="modeBtn">
+            <img src="resources/slasher.png" class="slasherImg">
+            <div>SLASH</div>
+          </button>
+        </div>
       </div>
-      <div>
-				<div class="label">Protection - <span id="shieldPowerInfo">33%</span></div>
-				<input type="range" id="shieldPower" min="0" max="100" value="33"/>
-			</div>
-			<div>
-				<div class="label">Propulsion - <span id="thrusterPowerInfo">33%</span></div>
-				<input type="range" id="thrusterPower" min="0" max="100" value="33"/>
-			</div>
-		</div>
-	</section>
+    </div>
+  </section>
 	<section id="gunnerSection">
 		<h1>Tourelle</h1>
 	</section>

@@ -12,76 +12,37 @@ document.addEventListener("DOMContentLoaded", function() {
 	var _userMode = document.querySelector('.modeBtn.pressed').getAttribute('id').replace('Btn', '');
 	console.log("_userMode", _userMode);
 
-	ws.onopen = function(e){
-		console.log(e);
-	}
-
-	ws.onmessage = function(event){
-		var data = JSON.parse(event.data);
-		console.log(data);
-	}
-
-	var send = function(id, value){
-		console.log(value);
+	var engineerSend = function(id, value){
 		var component = id.replace('Power', '');
-		console.log('COMMAND => spaceship:'+component+':power');
-		console.log('COMMAND DATA : power =>', value);
+		console.log('=> spaceship:'+component+':power =>', value);
 
 		ws.send(JSON.stringify({ 
 			name: 'spaceship:'+component+':power',
 			data: { power: value }}));
 	}
 
-	var changeListener = function(event){
-		console.log(_mouseDown);
-		//if(!_mouseDown) return;
-
-		var input = event.srcElement;
-		console.log("input", input);
-
-	  	
-	  	console.log(document.querySelector('#'+input.id+'Info'));
-	  	document.querySelector('#'+input.id+'Info').innerHTML = this.value+'%';
-
-	  	var inputValues = [healthInput, shieldInput, thusterInput].map(x => parseInt(x.value));
-	  	console.log("inputValues", inputValues);
-
-	  	var sum = inputValues.reduce((a, v) => a + v);
-	  	console.log(sum);
-	  	send(input.id, parseInt(input.value)/100);
-	};
-
 	var changeModeListener = function(event){
 		var modeBtns = document.getElementsByClassName('modeBtn');
+		document.querySelector('#stabilizePower').classList.remove('pressed');
 		for (var i =  0; i <= modeBtns.length - 1; i++) {
 			modeBtns[i].classList.remove('pressed');
 		}
 		var button = event.target.classList.contains('modeBtn') ? event.target : event.target.closest('.modeBtn');
 		button.classList.add('pressed');
 
-		_userMode = button.getAttribute('id').replace('Btn', '');
+		_userMode = button.getAttribute('role');
+		engineerSend(_userMode, 0.8);
 	};
 
-  	var healthInput = document.querySelector('#systemPower');
-  	var shieldInput = document.querySelector('#shieldPower');
-  	var thusterInput = document.querySelector('#thrusterPower');
-
-  	[healthInput, shieldInput, thusterInput].forEach(function(el){
-  		el.addEventListener('change', changeListener);
-  		el.onmousedown = function() { _mouseDown = 1; }
-		el.onmouseup = function() { _mouseDown = 0; }
-  	});
-
   	var stabilizePowerBtn = document.querySelector('#stabilizePower');
+
   	stabilizePowerBtn.addEventListener('click', function(e){
-  		[healthInput, shieldInput, thusterInput].forEach(function(el){
-  			if(el === healthInput) var val = 34;
-  			else var val = 33;
-  			el.value = val;
-  			_mouseDown = 1;
-  			el.dispatchEvent(new Event('mousemove'));
-  			_mouseDown = 0;
-  		});
+  		engineerSend('shield', 0.33);
+  		var modeBtns = document.getElementsByClassName('modeBtn');
+		for (var i =  0; i <= modeBtns.length - 1; i++) {
+			modeBtns[i].classList.remove('pressed');
+		}
+		this.classList.add('pressed');
   	});
 
   	var tankBtn = document.querySelector('#tankBtn');
