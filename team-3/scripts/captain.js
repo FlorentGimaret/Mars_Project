@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setPercent(index, value) {
         var barre = document.getElementsByClassName("active")[index];
-        barre.setAttribute("data-percent" , value);
+        barre.setAttribute("data-percent" , parseInt(value));
         barre.getElementsByClassName("bar")[0].style.width = value + "%";
         barre.getElementsByClassName("progress")[0].innerHTML = parseInt(value) + "%";
     };
@@ -13,6 +13,21 @@ document.addEventListener("DOMContentLoaded", function() {
     function setColor(element, color) {
         document.querySelector(element).style.color = color;
     };
+
+    function addClass(el, className) {
+        if (el.classList)
+            el.classList.add(className)
+        else if (!hasClass(el, className)) el.className += " " + className
+    }
+      
+    function removeClass(el, className) {
+        if (el.classList)
+            el.classList.remove(className)
+        else if (hasClass(el, className)) {
+            var reg = new RegExp('(\\s|^)' + className + '(\\s|$)')
+            el.className=el.className.replace(reg, ' ')
+        }
+    }
 
     const TEAM_NB = 3;
     const USERNAME = 'Jayster';
@@ -44,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function() {
             progress = "0%";
         }
         setPercent(4, dataPercent);
-
         qrySelect("infosVaisseau","li:nth-of-type(1)","Angle : " + tab['data']["angle"]);
         qrySelect("infosVaisseau","li:nth-of-type(2)","Direction de rotation : " + tab['data']["turnDirection"]);
         qrySelect("infosVaisseau","li:nth-of-type(3)","Rotation : " + tab['data']["turnTo"]);
@@ -53,8 +67,10 @@ document.addEventListener("DOMContentLoaded", function() {
         if(tab['data']['broken']) {
             broken = "Vaisseau endommagé";
             setColor("li:nth-of-type(6)", "red");
+            addClass(document.getElementById("infosRow"), "blink");
         } else {
             setColor("li:nth-of-type(6)", "green");
+            removeClass(document.getElementById("infosRow"), "blink");
         }
         qrySelect("infosVaisseau","li:nth-of-type(6)",broken);
 
