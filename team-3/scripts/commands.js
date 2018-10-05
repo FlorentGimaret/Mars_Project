@@ -1,13 +1,15 @@
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
 
     let ok=false;
 
-    const team=3;
-    let name="Georgette la licorne de l'espace";
+    const TEAM_NB = 3;
+    const USERNAME = 'Georgette';
+    const USERJOB = 'pilot';
+    const IP_SERVER = '92.222.88.16';
+    const SERVER_PORT = ':9090';
 
-
-    const ws = new WebSocket('ws://92.222.88.16:9090?team='+team+'&username='+name+'&job=pilot');
+    const ws = new WebSocket('ws://'+IP_SERVER+SERVER_PORT+'?team='+TEAM_NB+'&username='+USERNAME+'&job='+USERJOB);
 
     ws.onopen = function() {
         console.log('coucou c\'est Georgette (pilote connecté au serveur');
@@ -106,7 +108,6 @@ window.onload = function() {
 
     document.addEventListener('keydown', function (e) {
             let touche = e.key;
-//console.log(touche);
             if (touche === "z") {
                 document.querySelector("#georgette").style.animation="move 3s ease alternate";
                 moveRocket();
@@ -123,18 +124,5 @@ window.onload = function() {
             }
         }
     );
-
-
-
-    /*document.querySelector("#georgette")
-        .addEventListener('click', function (e) {
-            let x = Math.random()*658;
-            let y = Math.random()*658;
-
-            this.style.transform = "translate("+x+","+y+")";
-            this.style.transition = "5s";
-
-        })*/
-
-};
+});
 
