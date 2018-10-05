@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-	const TEAM_NB = 2;
+	const TEAM_NB = 3;
 	const USERNAME = 'PaulZer';
 	const USERJOB = 'Engineer';
 	const IP_SERVER = '92.222.88.16';
@@ -18,25 +18,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	ws.onmessage = function(event){
 		var data = JSON.parse(event.data);
-		//console.log(data);
+		console.log(data);
 	}
 
 	var send = function(id, value){
+		console.log(value);
 		var component = id.replace('Power', '');
 		console.log('COMMAND => spaceship:'+component+':power');
 		console.log('COMMAND DATA : power =>', value);
 
-		ws.send(JSON.stringify({ power: 'spaceship:'+component+':power', data: { power: value }}));
+		ws.send(JSON.stringify({ 
+			name: 'spaceship:'+component+':power',
+			data: { power: value }}));
 	}
 
 	var changeListener = function(event){
 		console.log(_mouseDown);
-		if(!_mouseDown) return;
+		//if(!_mouseDown) return;
 
 		var input = event.srcElement;
 		console.log("input", input);
 
-	  	send(input.id, input.value);
+	  	
 	  	console.log(document.querySelector('#'+input.id+'Info'));
 	  	document.querySelector('#'+input.id+'Info').innerHTML = this.value+'%';
 
@@ -45,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 	  	var sum = inputValues.reduce((a, v) => a + v);
 	  	console.log(sum);
-	  	if(sum !== 100){
-	  		// TODO SWITCH MODE
-	  	} else return;
+	  	send(input.id, parseInt(input.value)/100);
 	};
 
 	var changeModeListener = function(event){
@@ -66,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
   	var thusterInput = document.querySelector('#thrusterPower');
 
   	[healthInput, shieldInput, thusterInput].forEach(function(el){
-  		el.addEventListener('mousemove', changeListener);
+  		el.addEventListener('change', changeListener);
   		el.onmousedown = function() { _mouseDown = 1; }
 		el.onmouseup = function() { _mouseDown = 0; }
   	});
@@ -91,4 +92,3 @@ document.addEventListener("DOMContentLoaded", function() {
   		el.addEventListener('click', changeModeListener);
   	});
 });
-

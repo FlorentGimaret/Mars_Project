@@ -1,0 +1,214 @@
+@couleur1:#07031B;
+@couleur2:white;
+@couleur3:#F3B562;
+
+body
+{
+  overflow-y: hidden;
+  background-color:@couleur1 !important;
+  .tabControle
+  {
+    width:100%;
+    background-color: @couleur1;
+    text-align: center;
+    border-top:0.3vw solid @couleur3;
+    section
+    {
+      margin:2vh 1vw 0 1vw;
+      width:30vw;
+      display:inline-block;
+      vertical-align: top;
+      h1
+      {
+        text-align: center;
+        background-color:@couleur3;
+        border-radius:20px;
+        margin:0 0 5vh 0;
+      }
+      li
+      {
+        list-style-type: none;
+        text-align: left;
+        color:@couleur2;
+        font-size:1.5vw;
+        line-height:3.5vh;
+      }
+      .ui.indicating.progress.active
+      {
+        background-color:#14094A;
+        .bar
+        {
+          .progress
+          {
+            color:@couleur1;
+          }
+        }
+        .label
+        {
+          color:@couleur2;
+        }
+      }
+    }
+    #infosEnergie
+    {
+      .ui.indicating.progress.active
+      {
+        margin-bottom:10vh;
+      }
+    }
+    #engineerSection{
+      input[type="range"]{
+        width: 100%;
+      }
+
+      .label
+      {
+        color:@couleur2;
+      }
+
+      div.modeCol {
+        float:left;
+        width:33%;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom:30px;
+      }
+
+      img.tankImg, img.slasherImg, img.healerImg {
+        max-height: 5rem;
+        height:100%;
+      }
+
+      button.modeBtn {
+        border: 1px solid black;
+        background-color: transparent;
+        outline: none;
+        cursor: pointer;
+      }
+
+      button#tankBtn {
+        background-color: lightblue;
+      }
+      button#slasherBtn {
+        background-color: tomato;
+      }
+      button#healerBtn {
+        background-color: lightgreen;
+      }
+
+      button#tankBtn.pressed {
+        box-shadow: 0px 0px 30px lightblue;
+      }
+      button#slasherBtn.pressed {
+        box-shadow: 0px 0px 30px tomato;
+      }
+      button#healerBtn.pressed {
+        box-shadow: 0px 0px 30px lightgreen;
+      }
+    }
+  }
+
+  ////////////// Les Pilotes /////////////////
+  @import url('https://fonts.googleapis.com/css?family=Righteous');
+
+
+  #input-turn {
+    margin-right: 20px;
+
+  }
+
+  small {
+    font-size: 9px;
+  }
+
+  .key-img {
+    height: 50px;
+    display: inline;
+    vertical-align: bottom;
+  }
+
+  #commands {
+    line-height: 60px;
+    padding: 3%;
+
+  }
+
+  header {
+    font-size: xx-large;
+    text-transform: uppercase;
+    font-family: "Righteous", Arial, sans-serif;
+  }
+
+  #georgette {
+    width: 100px;
+    transition: transform 3s;
+  }
+
+  @keyframes move {
+    from {
+      transform: translateX(0px);
+    }
+    25% {
+      transform: translateX(50px);
+    }
+    75% {
+      transform: translateX(-50px);
+    }
+    /*50% { transform: scaleX(-1);}*/
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes moveR {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes moveL {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  #ot {
+    color:white!important;
+  }
+
+  #txt {
+    color:white;
+  }
+
+  #turn-to-a, #subbutton {
+    color:black;
+
+    font-family: "Righteous",Arial, sans-serif;
+    text-decoration: none;
+    background-color: white;
+    padding: 10px;
+    /*
+        border-right:7px solid black;
+        border-bottom:7px solid black;
+        border-top: 3px solid darkgray;
+        border-left: 1px solid darkgray;*/
+    border: 5px outset #222222;
+    border-radius: 5px;
+
+  }
+
+  #turn-to-a:hover,  #subbutton:hover {
+    background-color: lightgray;
+    border: 5px inset #222222;
+    /*border: none;*/
+    /*box-shadow: 1px 1px 10px grey inset;*/
+
+  }
+
+}
+
+
