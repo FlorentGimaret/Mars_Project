@@ -13,20 +13,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
   <script>
 
-  function qrySelect(parent, element){
-    document.getElementById(parent).querySelector(element);
+  function qrySelect(parent, element, value){
+    document.getElementById(parent).querySelector(element).html(value);
   };
 
-  var tab = [];
+  /*var tab = new Object;
   const ws = new WebSocket('ws://92.222.88.16:9090?team=1&username=JS&job=Captain');
 
-  ws.onmessage = function(evt) { tab = JSON.parse(evt.data); console.log(tab) };
-
-  ws.onopen = function() {
-      document.getElementsByClassName("active")[0].setAttribute("data-percent" , tab.data["data"]);
-      document.getElementsByClassName("active")[1].setAttribute("data-percent" , tab["systemPower"]*100);
-      document.getElementsByClassName("active")[2].setAttribute("data-percent" , tab["shieldPower"]*100);
-      document.getElementsByClassName("active")[3].setAttribute("data-percent" , tab["thrusterPower"]*100);
+  ws.onmessage = function(evt) { 
+    tab = JSON.parse(evt.data);
+    console.log(tab['data']['life']);
+    document.getElementsByClassName("active").forEach(function(element){
+      this.setAttribute("data")
+    });
+      document.getElementsByClassName("active")[0].setAttribute("data-percent" , tab['data']['life']);
+      document.getElementsByClassName("active")[1].setAttribute("data-percent" , tab['data']["systemPower"]*100);
+      document.getElementsByClassName("active")[2].setAttribute("data-percent" , tab['data']["shieldPower"]*100);
+      document.getElementsByClassName("active")[3].setAttribute("data-percent" , tab['data']["thrusterPower"]*100);
       var dataPercent = "100";
       var width = "100%";
       var progress = "100%";
@@ -36,19 +39,19 @@
         progress = "0%";
       }
       document.getElementsByClassName("active")[4].setAttribute("data-percent" , dataPercent);
-      /*qrySelect("infosVaisseau","li:nth-of-type(1)").append(tab["angle"]);
-      qrySelect("infosVaisseau","li:nth-of-type(2)").append(tab["turnDirection"]);
-      qrySelect("infosVaisseau","li:nth-of-type(3)").append(tab["turnTo"]);
-      qrySelect("infosVaisseau","li:nth-of-type(4)").append(tab["x"]);
-      qrySelect("infosVaisseau","li:nth-of-type(5)").append(tab["y"]);
-      qrySelect("infosVaisseau","li:nth-of-type(6)").append(tab["broken"]);
-      qrySelect("infosVaisseau","li:nth-of-type(7)").append(tab["inSafeZone"]);
-      qrySelect("infosVaisseau","li:nth-of-type(8)").append(tab["cargo"]);
+      qrySelect("infosVaisseau","li:nth-of-type(1)",tab['data']["angle"]);
+      qrySelect("infosVaisseau","li:nth-of-type(2)",tab['data']["turnDirection"]);
+      qrySelect("infosVaisseau","li:nth-of-type(3)",tab['data']["turnTo"]);
+      qrySelect("infosVaisseau","li:nth-of-type(4)",tab['data']["x"]);
+      qrySelect("infosVaisseau","li:nth-of-type(5)",tab['data']["y"]);
+      qrySelect("infosVaisseau","li:nth-of-type(6)",tab['data']["broken"]);
+      qrySelect("infosVaisseau","li:nth-of-type(7)",tab['data']["inSafeZone"]);
+      qrySelect("infosVaisseau","li:nth-of-type(8)",tab['data']["cargo"]);
 
-     qrySelect("infosTourelle","li:nth-of-type(1)").append(tab["turretAngle"]);
-     qrySelect("infosTourelle","li:nth-of-type(2)").append(tab["turretTurnDirection"]);
-     qrySelect("infosTourelle","li:nth-of-type(3)").append(tab["turretTurnTo"]);*/
-   };
+     qrySelect("infosTourelle","li:nth-of-type(1)",tab['data']["turretAngle"]);
+     qrySelect("infosTourelle","li:nth-of-type(2)",tab['data']["turretTurnDirection"]);
+     qrySelect("infosTourelle","li:nth-of-type(3)",tab['data']["turretTurnTo"]);
+   };*/
 
   </script>
 </head>
