@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Big Falcon Rocket</title>
+  <link rel="stylesheet/less" type="text/css" href="styles/style.less" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.css">
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.3/semantic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script>
+  <script>
+
+  function qrySelect(parent, element, value){
+    document.getElementById(parent).querySelector(element).html(value);
+  };
+
+  /*var tab = new Object;
+  const ws = new WebSocket('ws://92.222.88.16:9090?team=1&username=JS&job=Captain');
+
+  ws.onmessage = function(evt) { 
+    tab = JSON.parse(evt.data);
+    console.log(tab['data']['life']);
+    document.getElementsByClassName("active").forEach(function(element){
+      this.setAttribute("data")
+    });
+      document.getElementsByClassName("active")[0].setAttribute("data-percent" , tab['data']['life']);
+      document.getElementsByClassName("active")[1].setAttribute("data-percent" , tab['data']["systemPower"]*100);
+      document.getElementsByClassName("active")[2].setAttribute("data-percent" , tab['data']["shieldPower"]*100);
+      document.getElementsByClassName("active")[3].setAttribute("data-percent" , tab['data']["thrusterPower"]*100);
+      var dataPercent = "100";
+      var width = "100%";
+      var progress = "100%";
+      if (tab["reloading"] == true) {
+        dataPercent = "0";
+        width = "0%";
+        progress = "0%";
+      }
+      document.getElementsByClassName("active")[4].setAttribute("data-percent" , dataPercent);
+      qrySelect("infosVaisseau","li:nth-of-type(1)",tab['data']["angle"]);
+      qrySelect("infosVaisseau","li:nth-of-type(2)",tab['data']["turnDirection"]);
+      qrySelect("infosVaisseau","li:nth-of-type(3)",tab['data']["turnTo"]);
+      qrySelect("infosVaisseau","li:nth-of-type(4)",tab['data']["x"]);
+      qrySelect("infosVaisseau","li:nth-of-type(5)",tab['data']["y"]);
+      qrySelect("infosVaisseau","li:nth-of-type(6)",tab['data']["broken"]);
+      qrySelect("infosVaisseau","li:nth-of-type(7)",tab['data']["inSafeZone"]);
+      qrySelect("infosVaisseau","li:nth-of-type(8)",tab['data']["cargo"]);
+
+     qrySelect("infosTourelle","li:nth-of-type(1)",tab['data']["turretAngle"]);
+     qrySelect("infosTourelle","li:nth-of-type(2)",tab['data']["turretTurnDirection"]);
+     qrySelect("infosTourelle","li:nth-of-type(3)",tab['data']["turretTurnTo"]);
+   };*/
+
+  </script>
+  <script src="scripts/engineer.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="tabControle" id="infosRow">
+
+  <section id="infosVaisseau">
+    <h1>Informations du vaisseau</h1>
+    <div class="ui indicating progress active" data-percent="100">
+      <div class="bar" style="width:100%;">
+        <div class="progress">100%</div>
+      </div>
+      <div class="label">HP</div>
+    </div>
+    <li>Angle : </li>
+    <li>Direction de rotation :</li>
+    <li>Rotation : </li>
+    <li>X : </li>
+    <li>Y : </li>
+    <li>État du vaisseau : </li>
+    <li>Zone sûre : </li>
+    <li>Cargaison : </li>
+  </section>
+
+  <section id="infosEnergie">
+    <h1>Informations énergie</h1>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie système</div>
+    </div>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie bouclier</div>
+    </div>
+    <div class="ui indicating progress active" data-percent="33">
+      <div class="bar" style="width:33%;">
+        <div class="progress">33%</div>
+      </div>
+      <div class="label">Énergie poussée</div>
+    </div>
+  </section>
+
+  <section id="infosTourelle">
+    <h1>Informations tourelle</h1>
+    <div class="ui indicating progress active" data-percent="100">
+      <div class="bar" style="width:100%;">
+        <div class="progress">100%</div>
+      </div>
+      <div class="label">Rechargement effectué</div>
+    </div>
+    <li>Angle : </li>
+    <li>Direction de rotation : </li>
+    <li>Rotation : </li>
+  </section>
+</div>
+
+<div class="tabControle" id="commandsRow">
+	
+	<section id="pilotSection">
+		<h1>Pilotage</h1>
+	</section>
+	<section id="engineerSection">
+		<h1>Energie</h1>
+		<div id="Energy" style="padding: 5px 5px 5px 5px;">
+			<button type="button" id="stabilizePower">Stabiliser</button>
+			<div style="width: 100%;overflow:auto;">
+				<div class="modeCol">
+					<button id="tankBtn" type="button" class="modeBtn pressed">
+						<img src="resources/tank.png" class="tankImg">
+						<div>TANK</div>
+					</button>
+				</div>
+				<div class="modeCol">
+					<button id="slasherBtn" type="button" class="modeBtn">
+						<img src="resources/slasher.png" class="slasherImg">
+						<div>SLASH</div>
+					</button>
+				</div>
+				<div class="modeCol">
+					<button  id="healerBtn" type="button" class="modeBtn">
+						<img src="resources/healer.png" class="healerImg">
+						<div>HEAL</div>
+					</button>
+				</div>
+			</div>
+
+			<div>
+				<div class="label">Système - <span id="systemPowerInfo">34%</span></div>
+				<input type="range" id="systemPower" data-component="min="0" max="100" value="34"/>
+			</div>
+			<div>
+				<div class="label">Propulsion - <span id="thrusterPowerInfo">33%</span></div>
+				<input type="range" id="thrusterPower" min="0" max="100" value="33"/>
+			</div>
+			<div>
+				<div class="label">Protection - <span id="shieldPowerInfo">33%</span></div>
+				<input type="range" id="shieldPower" min="0" max="100" value="33"/>
+			</div>
+		</div>
+	</section>
+	<section id="gunnerSection">
+		<h1>Tourelle</h1>
+	</section>
+</div>
+</body>
+</html>
