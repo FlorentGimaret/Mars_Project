@@ -1,10 +1,9 @@
+EQUIPE DE BORD (Escadron METINET 2018-19)
 
-TODO : Faire une sorte de "base.html" avec :
-- les variables globales (connexion & fonction d'envoi de commandes [limitation nombre de commandes/temps à voir]), 
-- les blocs d'interface de chaque role et leurs scripts/styles
+-    Florent Gimaret (Capitaine)
 
-AUSSI :
-- Un dossier de ressources (images etc...)
-- Vérifier la compatibilité des variables, classes CSS, et des URL une fois le code mis en commun
+-    Céline Duclos & Mathilde Guillot (Pilote)
 
-Une fois ça fait on pourra tous bosser sur le même "projet" et donner un bonne gueule à notre bouzin \o/
+-    Yannick Debree & Matéo Rat (Artilleur)
+
+-    ​Paul Bouchillou (Ingénieur)
